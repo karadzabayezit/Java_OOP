@@ -1,0 +1,6 @@
+out/
+!**/src/main/**/out/
+
+bin/
+!**/src/main/**/bin/
+!**/src/test/**/bin/
