@@ -26,10 +26,10 @@ public class Main {
         System.out.println("Second Exp Roots: " + (secondExpRoots == null ? "No roots" : Arrays.toString(secondExpRoots)));
 
         if(firstExpRoots == null) {
-            System.out.println("\nThe second equation has the larger maximum root. Because the first doesnt have any roots");
+            System.out.println("\nThe second equation has the larger maximum root. Because the first does not have any roots");
             return;
         } else if(secondExpRoots == null) {
-            System.out.println("\nThe first equation has the larger maximum root. Because the second doesnt have any roots");
+            System.out.println("\nThe first equation has the larger maximum root. Because the second does nt have any roots");
             return;
         }
 
