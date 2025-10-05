@@ -7,6 +7,10 @@ public class CheckingAccount implements AccountOperations {
     private int interest;
 
     public void setCommission(int amount) {
+        if (amount < 0) {
+            System.err.println("Commission cannot be negative value!");
+            return;
+        }
         this.commission = amount;
     }
 
@@ -17,11 +21,20 @@ public class CheckingAccount implements AccountOperations {
     // Base operations:
     @Override
     public void deposit(int amount) {
+        if (amount < 0) {
+            System.err.println("You cannot deposit negative amount of money!");
+            return;
+        }
+
         this.balance += amount;
     }
 
     @Override
     public void withdraw(int amount) {
+        if (amount < 0) {
+            System.err.println("You cannot withdraw negative amount of money!");
+        }
+
         this.balance -= amount;
 
         if (this.balance < 0) {
@@ -54,6 +67,11 @@ public class CheckingAccount implements AccountOperations {
 
     @Override
     public void setInterest(int interest) {
+        if (interest < 0) {
+            System.err.println("You cannot set negative interest!");
+            return;
+        }
+
         this.interest = interest;
     }
 

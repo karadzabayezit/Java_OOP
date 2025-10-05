@@ -8,14 +8,22 @@ public class SavingsAccount implements AccountOperations {
     // Base operations:
     @Override
     public void deposit(int amount) {
+        if (amount < 0) {
+            System.err.println("You cannot deposit negative amount of money!");
+            return;
+        }
+
         this.balance += amount;
     }
 
     @Override
     public void withdraw(int amount) {
+        if (amount < 0) {
+            System.err.println("You cannot withdraw negative amount of money!");
+        }
 
         if (amount > this.balance) {
-            System.err.println("Err: The limit achieved");
+            System.err.println("Limit achieved: Withdraw amount is bigger than you can withdraw");
         } else {
             this.balance -= amount;
         }
@@ -44,6 +52,11 @@ public class SavingsAccount implements AccountOperations {
 
     @Override
     public void setInterest(int interest) {
+        if (interest < 0) {
+            System.err.println("You cannot set negative interest!");
+            return;
+        }
+
         this.interest = interest;
     }
 
@@ -60,7 +73,7 @@ public class SavingsAccount implements AccountOperations {
         }
 
         if (this.balance < 1000) {
-            this.balance += this.balance * (this.interest / 100);
+            this.balance += this.balance * (this.interest / 100.0);
         } else {
             this.balance += this.balance * 0.01;
         }

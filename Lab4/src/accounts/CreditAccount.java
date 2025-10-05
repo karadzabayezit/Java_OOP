@@ -7,7 +7,7 @@ public class CreditAccount implements AccountOperations {
     private int creditLimit;
 
     public void setCreditLimit(int amount) {
-        this.creditLimit = amount;
+        this.creditLimit = -Math.abs(amount);
     }
 
     public int getCreditLimit() {
@@ -17,15 +17,24 @@ public class CreditAccount implements AccountOperations {
     // Base operations:
     @Override
     public void deposit(int amount) {
+        if (amount < 0) {
+            System.err.println("You cannot deposit negative amount of money!");
+            return;
+        }
+
         this.balance += amount;
     }
 
     @Override
     public void withdraw(int amount) {
+        if (amount < 0) {
+            System.err.println("You cannot withdraw negative amount of money!");
+        }
+
         int accessibleBalance = this.balance + (-this.creditLimit);
 
         if (amount > accessibleBalance) {
-            System.err.println("Err: The limit achieved");
+            System.err.println("Limit achieved: Withdraw amount is bigger than you can withdraw");
             return;
         }
 
@@ -56,6 +65,11 @@ public class CreditAccount implements AccountOperations {
 
     @Override
     public void setInterest(int interest) {
+        if (interest < 0) {
+            System.err.println("You cannot set negative interest!");
+            return;
+        }
+
         this.interest = interest;
     }
 
@@ -71,7 +85,7 @@ public class CreditAccount implements AccountOperations {
             return;
         }
 
-        this.balance += this.balance * (this.interest / 100);
+        this.balance += this.balance * (this.interest / 100.0);
     }
 
     @Override
